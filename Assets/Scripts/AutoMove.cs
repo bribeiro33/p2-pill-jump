@@ -7,6 +7,7 @@ public class AutoMove : MonoBehaviour
 {
     public float torqueForce = 5.0f; // Set the force with which to push it with
     public float torqueScaleFactor = 0.2f;
+    public float velocity = 5.0f;
     private float currentSpeed;
     private Rigidbody rb;
     private float objectLength;
@@ -14,11 +15,11 @@ public class AutoMove : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        currentSpeed = torqueForce;
+        currentSpeed = velocity;
     }
     void Update()
     {
-        //rb.velocity = new Vector3(currentSpeed, rb.velocity.y, 0); // Move the object to the right
+        rb.velocity = new Vector3(currentSpeed, rb.velocity.y, 0); // Move the object to the right
         // Apply a continuous torque to keep the capsule rolling
 
         // Check if the Renderer component exists
