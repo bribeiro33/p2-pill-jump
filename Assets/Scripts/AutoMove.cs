@@ -17,16 +17,14 @@ public class AutoMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         currentSpeed = velocity;
     }
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = new Vector3(currentSpeed, rb.velocity.y, 0); // Move the object to the right
         // Apply a continuous torque to keep the capsule rolling
 
-        // Check if the Renderer component exists
         objectLength = transform.localScale.y;
         float balancedForce = torqueForce - (torqueScaleFactor * objectLength);
         Vector3 force = new Vector3(0, 0, -balancedForce);
-        Debug.Log("current force: " + force + "objectLength: " + objectLength);
         rb.AddTorque(force);
     }
 

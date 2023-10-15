@@ -9,11 +9,13 @@ public class LevelUI : MonoBehaviour
     public string deathText;
     Subscription<PassLevelEvent> passLevelSubscription;
     Subscription<DeathEvent> deathSubscription;
+    Subscription<RestartEvent> restartSubscription;
 
     void Start()
     {
         passLevelSubscription = EventBus.Subscribe<PassLevelEvent>(_OnLevelCompletion);
         deathSubscription = EventBus.Subscribe<DeathEvent>(_OnDeath);
+        restartSubscription = EventBus.Subscribe<RestartEvent>(_OnRestart);
     }
 
     void _OnLevelCompletion(PassLevelEvent e)
@@ -24,6 +26,11 @@ public class LevelUI : MonoBehaviour
     void _OnDeath(DeathEvent e)
     {
         GetComponent<Text>().text = deathText;
+    }
+
+    void _OnRestart(RestartEvent e)
+    {
+        GetComponent<Text>().text = "";
     }
 
     private void OnDestroy()

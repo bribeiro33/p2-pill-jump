@@ -6,11 +6,15 @@ using UnityEngine;
 public class RepeatingBackground : MonoBehaviour
 {
     public Transform[] backgroundObjects;
+    public Transform player;
+    Subscription<RestartEvent> RestartSubscription;
 
     private int currentIndex = 0;
     private float backgroundLength;
+    private float cameraPositionX;
     private void Start()
     {
+        RestartSubscription = EventBus.Subscribe<RestartEvent>(_OnRestart);
         // Get the Renderer component of the GameObject
         Renderer renderer = backgroundObjects[0].transform.GetComponent<Renderer>();
 
@@ -20,12 +24,13 @@ public class RepeatingBackground : MonoBehaviour
             Bounds bounds = renderer.bounds;
             backgroundLength = bounds.size.x;
         }
+        cameraPositionX = Camera.main.transform.position.x;
     }
 
     void Update()
     {
         // Get the camera's x position
-        float cameraPositionX = Camera.main.transform.position.x;
+        cameraPositionX = Camera.main.transform.position.x;
 
         // Get the x position of the current background object
         float objectPositionX = backgroundObjects[currentIndex].position.x;
@@ -42,5 +47,20 @@ public class RepeatingBackground : MonoBehaviour
             // Cycle to the next background object
             currentIndex = (currentIndex + 1) % backgroundObjects.Length;
         }
+    }
+
+    void _OnRestart(RestartEvent e)
+    {
+        // Get the difference between the current background and the camera
+        float difference = backgroundObjects[currentIndex].position.x - player.position.x;
+        Debug.Log("Difference: " + difference);
+        // Update the positions of all background objects to match the player's new position
+        foreach (Transform backgroundObject in backgroundObjects)
+        {
+            Vector3 updatedPosition = backgroundObject.position;
+            updatedPosition.x -= difference;
+            backgroundObject.position = updatedPosition;
+        }
+
     }
 }
