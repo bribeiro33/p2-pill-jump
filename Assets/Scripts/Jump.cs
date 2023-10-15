@@ -6,7 +6,7 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     public float jumpForce = 5.0f;
-    private bool isGrounded = true;
+    private bool isGrounded = false;
 
     private Rigidbody rb;
 

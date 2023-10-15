@@ -59,7 +59,7 @@ public class RepeatingBackground : MonoBehaviour
         {
             Vector3 updatedPosition = backgroundObject.position;
             updatedPosition.x -= difference;
-            backgroundObject.position = updatedPosition;
+            GameObject duplicate = Instantiate(backgroundObject.gameObject, updatedPosition, backgroundObject.rotation, backgroundObject.parent);
         }
 
     }

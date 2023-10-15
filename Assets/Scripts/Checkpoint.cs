@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    static int current_checkpoint = 1;
-    static float cp_x = 0;
+    private int current_checkpoint = 1;
+    private float cp_x = 0;
 
     private void Start()
     {
@@ -14,10 +14,14 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        current_checkpoint++;
-        EventBus.Publish<CheckpointEvent>(new CheckpointEvent(current_checkpoint, cp_x));
-        GameManager.Instance.SetLastCheckpointPosition(transform.position);
-        gameObject.SetActive(false);
+        if (other.GetComponent<PlayerCollisions>() != null)
+        {
+            current_checkpoint++;
+            EventBus.Publish<CheckpointEvent>(new CheckpointEvent(current_checkpoint, cp_x));
+            GameManager.Instance.SetLastCheckpointPosition(transform.position);
+            gameObject.SetActive(false);
+        }
+        
     }
 }
 
