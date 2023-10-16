@@ -23,7 +23,6 @@ public class RestartScene : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -41,7 +40,6 @@ public class RestartScene : MonoBehaviour
     void _OnCheckpointReached(CheckpointEvent e)
     {
         player_restart_location = new Vector3(e.checkpoint_x, player_position.position.y,  player_position.position.z);
-        Debug.Log("new checkpoint: " +  player_restart_location);
     }
     void _OnLevelCompletion(PassLevelEvent e)
     {
@@ -71,6 +69,8 @@ public class RestartScene : MonoBehaviour
     private void OnDestroy()
     {
         EventBus.Unsubscribe(passLevelSubscription);
+        EventBus.Unsubscribe(deathSubscription);
+        EventBus.Unsubscribe(checkpointSubscription);
     }
 }
 

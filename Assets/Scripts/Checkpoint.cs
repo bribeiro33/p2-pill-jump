@@ -17,8 +17,13 @@ public class Checkpoint : MonoBehaviour
         if (other.GetComponent<PlayerCollisions>() != null)
         {
             current_checkpoint++;
+            if (this.GetComponent<EndLevel>() != null)
+            {
+                cp_x = -8.71f;
+            }
             EventBus.Publish<CheckpointEvent>(new CheckpointEvent(current_checkpoint, cp_x));
-            GameManager.Instance.SetLastCheckpointPosition(transform.position);
+            Vector3 checkpointVec = new Vector3(cp_x, 1.5f, -1.26f);
+            GameManager.Instance.SetLastCheckpointPosition(checkpointVec);
             gameObject.SetActive(false);
         }
         

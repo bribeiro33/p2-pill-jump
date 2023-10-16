@@ -53,7 +53,6 @@ public class RepeatingBackground : MonoBehaviour
     {
         // Get the difference between the current background and the camera
         float difference = backgroundObjects[currentIndex].position.x - player.position.x;
-        Debug.Log("Difference: " + difference);
         // Update the positions of all background objects to match the player's new position
         foreach (Transform backgroundObject in backgroundObjects)
         {

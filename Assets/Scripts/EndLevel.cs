@@ -11,6 +11,8 @@ public class EndLevel : MonoBehaviour
             EventBus.Publish<PassLevelEvent>(new PassLevelEvent());
             // Disable player
             other.gameObject.SetActive(false);
+            Vector3 startingLocation = new Vector3(-8.71f, 1.76f, -1.26f);
+            Respawn.Instance.SetRespawnPosition(startingLocation);
 
         }
     }

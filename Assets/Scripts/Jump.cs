@@ -21,6 +21,7 @@ public class Jump : MonoBehaviour
     void _OnChange(AirEvent e)
     {
         isGrounded = e.isGrounded;
+        Debug.Log("isGrounded: " + isGrounded);
     }
 
 
@@ -29,6 +30,7 @@ public class Jump : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            Debug.Log("Tried to jump");
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
         }
     }

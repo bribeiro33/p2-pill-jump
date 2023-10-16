@@ -1,2 +1,4 @@
 Background: Synthwave Neon Desert / Beach Background by Tsorthan Grove - CC BY 4.0 - https://opengameart.org/content/synthwave-neon-desert-beach-background
 Font: VCR OSD Mono by Riciery Leal https://www.dafont.com/vcr-osd-mono.font
+Confetti: Confetti Particles by Unluck Software https://assetstore.unity.com/packages/vfx/particles/spells/confetti-particles-4150
+Background Music: Renew by Alan Dalcastagne da Cunha https://assetstore.unity.com/packages/audio/music/electronic/synthwave-sci-fi-music-pack-184583

@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -25,6 +24,7 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("Set checkpoint: " + lastCheckpointPosition);
         lastCheckpointPosition = position;
+        EventBus.Publish<CheckpointEvent>(new CheckpointEvent(1, position.x));
     }
 
     // Method to get the last activated checkpoint's position
